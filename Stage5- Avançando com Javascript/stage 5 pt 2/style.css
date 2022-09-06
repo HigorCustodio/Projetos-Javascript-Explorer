@@ -1,0 +1,210 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    /*Variaveis de cor Fontes*/
+    --font-color-title:rgba(12, 52, 64, 1);
+    --font-color-label:#00453A;
+    --font-color-input:#212529;
+    --font-color-button:#FFFFFF;
+    --font-color-alert:#FFFFFF;
+    --font-color-placeholder:rgba(73, 80, 87, 0.5);
+    
+    
+    /*Variaveis de cor de fundo*/
+    --bg-body:#040924;
+    --bg-card:white;
+    --bg-input:#DCE2E9;
+    --bg-button:#02799D;
+    --bg-alert:#F03E3E;
+    --bg-button-hover:#0499c7;
+    --bg-modal:rgba(0,0,0,0.7);
+
+    /*Variaveis config. bordas*/
+    --border-input:1px solid rgba(73, 80, 87, 0.3);
+    --border-outline-input:2px solid #02799D;
+
+    /*Variações de font-family*/
+    --ff-body:'Roboto', sans-serif;
+
+    /*Resetando o valor do font-size no root para 1rem == 10px*/
+    font-size: 62.5%;
+    
+}
+body{
+    font-family: var(--ff-body);
+    background-color: var(--bg-body);
+}
+
+body,input, button{ /*Input e button não recebem a propriedade de font-size se colocado somente no body*/
+    font-size: 1.6rem;
+    line-height: 2rem;
+}
+
+.container{
+    height: 100vh;
+
+    /*Centralizando o conteúdo do container utilizando o place-content*/
+    display: grid;
+    place-content: center;
+}
+
+.card{
+    max-width: 42.8rem;
+
+    /*Centralizando o conteúdo com o margin-inline*/
+    margin-inline: auto;
+
+    padding: 4.8rem 6.4rem 6.4rem;
+    background-color: white;
+
+    box-shadow: 0 .2rem .4rem rgba(0,0,0,0.1);
+    border-radius: .6rem;
+}
+
+.title{
+    font-size:3.2rem;
+    line-height: 4rem;
+
+    color: var(--font-color-title);
+}
+
+form{
+    width:30rem;
+}
+
+form h1{
+    margin-bottom: 3.2rem;
+}
+
+form label{
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+
+    color: var(--font-color-label);
+    margin-bottom: .8rem;
+    display: block; /*O label tem como padrão o display:inline, o que impede de colocar margin-bottom, alterando para display:block ele aceita a propriedade de margin-bottom*/
+
+}
+
+form input{
+    width: 100%;
+
+    background-color: var(--bg-input);
+    border: var(--border-input);
+    color: var(--font-color-input);
+
+    padding: 1.6rem;
+    border-radius: .4rem;
+}
+
+form input:focus{ /*Outline é a borda que vai ter no input qualdo selecionado*/
+    outline: var(--border-outline-input);
+}
+
+form input::placeholder{
+    color: var(--font-color-placeholder);
+}
+
+.input-wrapper + .input-wrapper{ /*aplica as propriedades somente no input-wrapper que anterior a ele tenha outro input-wrapper*/
+    margin-top: 1.6rem;
+}
+
+form button{
+    margin-top: 3.2rem;
+    padding: 1.6rem;
+    width: 100%;
+
+    border-radius: .8rem;
+    border: none;
+    background-color: var(--bg-button);
+    color: var(--font-color-button);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+  
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: background .3s; /*Transition esta no button porque se fosse colocado no hover ele ativaria so com o mouse em cima e desativaria com o mouse fora*/
+}
+
+form button:hover{
+    background-color:var(--bg-button-hover);
+}
+
+/* Modal/Pop-up */
+
+.modal-wrapper.open{ /* Classe Utilizada para aparecer o Modal/Pop-up*/
+    opacity: 1;
+    visibility: visible;
+}
+.modal-wrapper{
+    position: absolute; 
+
+    /*Utilizo a propriedade inset:0 (top,bottom,right e left) para 
+    que o background seja aplicado em toda a página cobrindo 
+    o conteúdo de baixo*/
+    inset: 0;
+    
+
+    /*Centralizando o conteúdo na tela:*/
+    display: grid;
+    place-content: center;
+
+    background: var(--bg-modal);
+
+    /*Retirando o modal da tela por padrão*/
+    opacity: 0;
+    visibility: hidden;
+}
+.modal{
+    position: relative;
+}
+.modal button{
+    background: none;
+    border: none;
+
+    position:absolute;
+    top:1.6rem;
+    right: 1.6rem;
+
+    cursor: pointer;
+
+    transition: transform .3s;
+}
+.model button{
+    transform: scale(1.1);
+}
+
+/* Alert Error*/
+.alert-error.open{ /* Classe Utilizada para aparecer o Alert Error na tela*/
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.alert-error{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    text-align: center;
+    color: var(--font-color-alert);
+    font-weight: bold;
+
+    background-color: var(--bg-alert);
+
+    padding: 1.8rem;
+
+    /*Retirando o alert-error da tela por padrão*/
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-30px);
+    transition: transform .5s;
+}
