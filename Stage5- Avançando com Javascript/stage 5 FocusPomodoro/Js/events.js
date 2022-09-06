@@ -40,18 +40,18 @@ export default function ({controls, timer, sound}){
         buttonSoundOn.addEventListener('click', function(){
             buttonSoundOn.classList.add('hide')
             buttonSoundOff.classList.remove('hide')
-            sound.bgAudio.pause()
+            sound.bgAudio.play()
         })
-
-
-    //com som:
-    
+        
+        
+        //com som:
+        
         buttonSoundOff.addEventListener('click', function(){
             buttonSoundOff.classList.add('hide')
             buttonSoundOn.classList.remove('hide')
-            sound.bgAudio.play()
+            sound.bgAudio.pause()
         })
-   
+        
   //Definindo os minutos desejados pelo usuario;
         
             buttonSet.addEventListener('click', function(){
